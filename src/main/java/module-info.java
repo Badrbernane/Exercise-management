@@ -9,4 +9,6 @@ module esihelper.exercise_management {
 
     opens esihelper.exercise_management to javafx.fxml;
     exports esihelper.exercise_management;
+    opens esihelper.exercise_management.Model to javafx.fxml;
+    opens esihelper.exercise_management.Controller to javafx.fxml; // Open the Controller package
 }

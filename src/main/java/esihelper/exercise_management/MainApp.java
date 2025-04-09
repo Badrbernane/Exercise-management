@@ -1,23 +1,24 @@
 package esihelper.exercise_management;
 
-import esihelper.exercise_management.DAO.UtilisateurDao;
-import esihelper.exercise_management.Model.Utilisateur;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-public class MainApp {
+public class MainApp extends Application {
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/esihelper/exercise_management/login-view.fxml"));
+        Parent root = loader.load();
+
+        primaryStage.setTitle("Exercise Management");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
+    }
+
     public static void main(String[] args) {
-        UtilisateurDao dao = new UtilisateurDao();
-
-        // Test d'enregistrement
-        Utilisateur newUser = new Utilisateur("Badr", "badr@test.com", "123456");
-        boolean success = dao.register(newUser);
-        System.out.println(success ? "Utilisateur enregistré" : "Échec de l'enregistrement");
-
-        // Test de connexion
-        Utilisateur loggedIn = dao.login("badr@test.com", "123456");
-        if (loggedIn != null) {
-            System.out.println("Connecté en tant que : " + loggedIn.getNom());
-        } else {
-            System.out.println("Échec de connexion");
-        }
+        launch(args);
     }
 }
