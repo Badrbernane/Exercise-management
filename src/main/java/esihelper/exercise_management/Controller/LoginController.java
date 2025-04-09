@@ -3,9 +3,15 @@ package esihelper.exercise_management.Controller;
 import esihelper.exercise_management.DAO.UtilisateurDao;
 import esihelper.exercise_management.Model.Utilisateur;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class LoginController {
 
@@ -38,7 +44,13 @@ public class LoginController {
 
     @FXML
     private void handleRegister() {
-        System.out.println("Redirection vers l'écran d'inscription.");
-        // TODO: Implement registration screen navigation
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/esihelper/exercise_management/register-view.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) emailField.getScene().getWindow();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
